@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        E-Wallet
+    </title>
+</head>
+
+<body>
+    {% if  form.errors %}
+    <p>Login Failed</p>
+    {% endif %}
+
+    {% if next %}
+    <p>Not authorized</p>
+    {% endif %}
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <p>Username:  {{ form.username }}</p>
+        <p>Password:  {{ form.password }}</p>
+
+        <p><input type="submit" value="login"></p>
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+</body>

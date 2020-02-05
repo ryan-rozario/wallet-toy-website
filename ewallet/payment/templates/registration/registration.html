@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        E-Wallet
+    </title>
+</head>
+
+<body>
+    <h1>Registration</h1>
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {% if  form.errors %}
+        <p>Please fic errors</p>
+        {% endif %}
+        {{ form }}
+
+        <p><input type="submit" value="register"></p>
+    </form>
+
+</body>
