@@ -34,6 +34,10 @@ class Wallet(models.Model):
             print("Funds cant be transfered within same account")
             return
 
+        if value>self.current_balance:
+            print("No funds in wallet")
+            return
+
         with transaction.atomic():
             self.remove_money(value)
         with transaction.atomic():

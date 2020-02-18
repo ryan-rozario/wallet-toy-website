@@ -68,7 +68,7 @@ def deposit_view(request,*args,**kwargs):
         dep =DepositForm(request.POST)
 
         if dep.is_valid():
-            amt=dep.cleaned_data['amt']
+            amt=dep.cleaned_data['dep_amt']
 
             w.add_money(amt)
             
@@ -88,7 +88,7 @@ def withdraw_view(request,*args,**kwargs):
         wit =WithdrawForm(request.POST)
 
         if wit.is_valid():
-            amt=wit.cleaned_data['amt']
+            amt=wit.cleaned_data['wit_amt']
 
             w.remove_money(amt)
             
@@ -108,7 +108,7 @@ def transfer_view(request,*args,**kwargs):
         trans =TransferForm(request.POST)
 
         if trans.is_valid():
-            amt=trans.cleaned_data['amt']
+            amt=trans.cleaned_data['trans_amt']
             reciever_username = trans.cleaned_data['recipient']
             reciever_object = User.objects.get(username=reciever_username)
             reciever = Wallet.objects.get(user=reciever_object)

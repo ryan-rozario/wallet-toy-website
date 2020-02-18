@@ -1,13 +1,13 @@
 <h1>
     Welcome , {{ user.username }}
 </h1>
-
-<p>Current Balance:   {{ w.current_balance }}</p>
+<p>Current Balance:</p>
+<p name="balance">{{ w.current_balance }}</p>
 
 <h2>Add Money</h2>
 <form method="POST" action="{% url 'deposit' %}">
     {% csrf_token %}
-    <p>Amount to deposit:  {{ deposit.amt }}</p>
+    <p>Amount to deposit:  {{ deposit.dep_amt }}</p>
 
     <p><input type="submit" value="Deposit"></p>
     <input type="hidden" name="next" value="{{ next }}">
@@ -17,7 +17,7 @@
 <h2>Withdraw Money</h2>
 <form method="POST" action="{% url 'withdraw' %}">
     {% csrf_token %}
-    <p>Amount to withdraw:  {{ withdraw.amt }}</p>
+    <p>Amount to withdraw:  {{ withdraw.wit_amt }}</p>
 
     <p><input type="submit" value="Withdraw"></p>
     <input type="hidden" name="next" value="{{ next }}">
@@ -26,11 +26,13 @@
 <h2>Transfer Money</h2>
 <form method="POST" action="{% url 'transfer' %}">
     {% csrf_token %}
-    <p>Amount to transfer:  {{ transfer.amt }}</p>
+    <p>Amount to transfer:  {{ transfer.trans_amt }}</p>
     <p>Username of person to transfer to:  {{ transfer.recipient }}</p>
 
     <p><input type="submit" value="Transfer"></p>
     <input type="hidden" name="next" value="{{ next }}">
 </form>
 
+
+<p><a href="{% url "logout" %}?next=/">Logout</a></p>
 
