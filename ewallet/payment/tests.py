@@ -42,6 +42,7 @@ class TestProject(StaticLiveServerTestCase):
         submit_button= self.browser.find_element_by_css_selector("input[type='submit']")
         submit_button.click()
 
+        #add money
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(0,100000000)
         dep_field=self.browser.find_element_by_name("dep_amt")
@@ -53,6 +54,7 @@ class TestProject(StaticLiveServerTestCase):
 
         self.assertEquals(bal+num,bal_new)
 
+        #valid withdrawal
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(0,bal)
         wit_field=self.browser.find_element_by_name("wit_amt")
@@ -64,6 +66,7 @@ class TestProject(StaticLiveServerTestCase):
 
         self.assertEquals(bal-num,bal_new)
 
+        #invalid withdrawal
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(bal,100000000000000000)
         wit_field=self.browser.find_element_by_name("wit_amt")
@@ -86,6 +89,7 @@ class TestProject(StaticLiveServerTestCase):
         link = self.browser.find_element_by_link_text('Register')
         link.click()
 
+        #creates second user
         user=self.browser.find_element_by_name("username")
         password1=self.browser.find_element_by_name("password1")
         password2=self.browser.find_element_by_name("password2")
@@ -100,6 +104,7 @@ class TestProject(StaticLiveServerTestCase):
         submit_button= self.browser.find_element_by_css_selector("input[type='submit']")
         submit_button.click()
 
+        #valid withdrawal
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(0,100000000)
         dep_field=self.browser.find_element_by_name("dep_amt")
@@ -111,7 +116,7 @@ class TestProject(StaticLiveServerTestCase):
 
         self.assertEquals(bal+num,bal_new)
 
-
+        #valid transaction
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(bal,100000000000)
         wit_field=self.browser.find_element_by_name("trans_amt")
@@ -126,7 +131,7 @@ class TestProject(StaticLiveServerTestCase):
 
         self.assertEquals(bal,bal_new)
 
-
+        #invalid transfer
         bal=int(self.browser.find_element_by_name("balance").text)
         num=random.randint(0,bal)
         wit_field=self.browser.find_element_by_name("trans_amt")
@@ -149,7 +154,7 @@ class TestProject(StaticLiveServerTestCase):
         password=self.browser.find_element_by_name("password")
         
 
-
+        #check other account
 
         user.clear()
         user.send_keys(user_text1)
