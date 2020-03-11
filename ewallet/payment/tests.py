@@ -23,6 +23,72 @@ class TestProject(StaticLiveServerTestCase):
         self.browser.close()
 
 
+    def test_registration_failure(self):
+        self.browser.get(self.live_server_url)
+        link = self.browser.find_element_by_link_text('Register')
+        link.click()
+        user=self.browser.find_element_by_name("username")
+        password1=self.browser.find_element_by_name("password1")
+        password2=self.browser.find_element_by_name("password2")
+        user.clear()
+        user_text=uuid.uuid4().hex
+        pass_text=uuid.uuid4().hex
+        user.send_keys(user_text)
+        password1.clear()
+        password1.send_keys(pass_text+uuid.uuid4().hex)
+        password2.clear()
+        password2.send_keys(pass_text)
+        submit_button= self.browser.find_element_by_css_selector("input[type='submit']")
+        submit_button.click()
+
+        self.assertNotEquals("Welcome , "+user_text,self.browser.find_element_by_tag_name("h1").text)
+
+
+    def test_registration_success_login(self):
+        self.browser.get(self.live_server_url)
+        link = self.browser.find_element_by_link_text('Register')
+        link.click()
+        user=self.browser.find_element_by_name("username")
+        password1=self.browser.find_element_by_name("password1")
+        password2=self.browser.find_element_by_name("password2")
+        user.clear()
+        user_text=uuid.uuid4().hex
+        pass_text=uuid.uuid4().hex
+        user.send_keys(user_text)
+        password1.clear()
+        password1.send_keys(pass_text)
+        password2.clear()
+        password2.send_keys(pass_text)
+        submit_button= self.browser.find_element_by_css_selector("input[type='submit']")
+        submit_button.click()
+
+        self.assertEquals("Welcome , "+user_text,self.browser.find_element_by_tag_name("h1").text)
+
+
+        link = self.browser.find_element_by_link_text('Logout')
+        link.click()
+
+        user=self.browser.find_element_by_name("username")
+        password=self.browser.find_element_by_name("password")
+        
+
+
+
+        user.clear()
+        user.send_keys(user_text)
+        password.clear()
+        password.send_keys(pass_text)
+
+        submit_button= self.browser.find_element_by_css_selector("input[type='submit']")
+        submit_button.click()
+
+        self.assertEquals("Welcome , "+user_text,self.browser.find_element_by_tag_name("h1").text)
+
+
+
+
+
+
     def test_registration_screen_open(self):
         self.browser.get(self.live_server_url)
         link = self.browser.find_element_by_link_text('Register')
