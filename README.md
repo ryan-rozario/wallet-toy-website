@@ -6,12 +6,17 @@ Payment Wallet Website for the purpose of our Software Engineering Class. The we
 
 * Project Manager
 
-[x] Used process street to set up a dummy workflow schedule.
+- [x] Used process street to set up a dummy workflow schedule.
 
 * UML diagrams
 
-[x] Designed Class Diagram, Sequence Diagram and Activity Diagram
+- [x] Designed Class Diagram, Sequence Diagram and Activity Diagram
 
 * Testing using Selenium
 
-[x] Create a website having basic functionality and set up test cases using selenium
+- [x] Create a website having basic functionality and set up test cases using selenium
+
+* Jenkins
+
+- [x] Automation of tests using jenkins
+
